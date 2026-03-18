@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бібліотека</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>My Bookish World</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Зараз читаю</a></li>
+            <li><a href="library.html"style="color: #d4af37;">Моя Бібліотека</a></li>
+            <li><a href="tbr.html">План на майбутнє</a></li>
+            <li><a href="analytics.html">Читацький Календар</a></li>
+            <li><a href="publishers.html">Видавництва</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="library-display">
+        <h2>📚 Моя Книжкова Полиця</h2>
+        <div class="bookshelf" id="bookshelf-container"></div>
+    </section>
+
+    <section id="add-book-section">
+        <h3>Додати нову книгу на полицю</h3>
+        <div class="form-container">
+            <input type="text" id="book-title" placeholder="Назва книги...">
+            <input type="text" id="book-author" placeholder="Автор...">
+            
+            <input type="text" id="book-image-url" placeholder="Вставте адресу зображення (URL)..." oninput="previewFromUrl()">
+            
+            <div id="preview-container"></div>
+
+            <button type="button" onclick="addNewBook()">Поставити на полицю</button>
+        </div>
+    </section>
+</main>
+<script src="script2.js"></script>
+<button id="scrollTopBtn" onclick="scrollToTop()" title="Повернутися наверх">↑</button>
+</body>
+</html>

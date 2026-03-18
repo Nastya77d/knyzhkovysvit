@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календар читання - My Bookish World</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стилі спеціально для календаря */
+        /* Загальна обгортка календаря */
+        .calendar-wrapper {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 1000px; /* Збільшили ширину з 700px до 1000px */
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .calendar-header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem; /* Більші стрілочки */
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .calendar-header button:hover {
+            color: #d4af37;
+        }
+        .calendar-header h3 {
+            margin: 0;
+            color: white;
+            font-size: 1.8rem; /* Більший шрифт місяця */
+            text-transform: capitalize;
+        }
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: bold;
+            color: #888;
+            margin-bottom: 15px;
+            font-size: 1.2rem; /* Більші дні тижня */
+        }
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px; /* Більше простору між днями */
+            text-align: center;
+        }
+        /* Клітинка дня */
+        .day-cell {
+            min-height: 160px; /* Збільшили висоту комірки (було 110px) */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 15px;
+            border-radius: 10px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.03); /* Зробили фон клітинок трішки помітнішим */
+            transition: background 0.2s;
+        }
+
+        .day-cell:hover {
+            background: rgba(255, 255, 255, 0.06); /* Клітинка трохи підсвічується, коли наводите мишку */
+        }
+
+        .day-number {
+            font-size: 1.6rem; /* Великі цифри дат (було 1.1rem) */
+            font-weight: bold;
+            color: #555; 
+        }
+        /* Обкладинка книги */
+        .mini-cover {
+            width: 80px;  /* Збільшили ширину фото (було 50px) */
+            height: 120px; /* Збільшили висоту фото (було 75px) */
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+            transition: transform 0.2s;
+            position: relative; /* Необхідно для z-index нижче */
+        }
+        .mini-cover:hover {
+            transform: scale(1.15); /* Обкладинка ще сильніше збільшується при наведенні */
+            z-index: 10; /* Щоб при збільшенні обкладинка не ховалася під інші дні */
+            cursor: pointer;
+        }
+        
+        /* Кольори для часу читання */
+        .color-1 { color: #FFA500; } /* Помаранчевий: 1 сек+ */
+        .color-2 { color: #A020F0; } /* Фіолетовий: 10 хв+ */
+        .color-3 { color: #4169E1; } /* Синій: 30 хв+ */
+        .color-4 { color: #32CD32; } /* Зелений: 1 год+ */
+
+        /* Легенда */
+        .legend {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+            padding-top: 25px;
+        }
+        .legend-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1rem; /* Більший текст легенди */
+            color: #aaa;
+        }
+        .legend-color {
+            width: 25px; /* Більші квадратики кольорів */
+            height: 25px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Bookish World</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Зараз читаю</a></li>
+                <li><a href="library.html">Моя Бібліотека</a></li>
+                <li><a href="tbr.html">План на майбутнє</a></li>
+                <li><a href="tbr.html#random-section">Що почитати?</a></li>
+                <li><a href="analytics.html" style="color: #d4af37;">Читацький Календар</a></li>
+                <li><a href="publishers.html">Видавництва</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main style="padding: 20px;">
+        <div class="calendar-wrapper">
+            <div class="calendar-header">
+                <button onclick="changeMonth(-1)">◀</button>
+                <h3 id="month-year-display">Місяць Рік</h3>
+                <button onclick="changeMonth(1)">▶</button>
+            </div>
+            
+            <div class="weekdays">
+                <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Нд</div>
+            </div>
+            
+            <div class="days-grid" id="calendar-days">
+                </div>
+
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background: #FFA500;"></div>1 сек+</div>
+                <div class="legend-item"><div class="legend-color" style="background: #A020F0;"></div>10 хв+</div>
+                <div class="legend-item"><div class="legend-color" style="background: #4169E1;"></div>30 хв+</div>
+                <div class="legend-item"><div class="legend-color" style="background: #32CD32;"></div>1 год+</div>
+            </div>
+        </div>
+        
+        <button onclick="clearAnalytics()" style="margin: 30px auto; display: block; background: transparent; color: #cc0000; border: 1px solid #cc0000; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
+            Очистити всю історію
+        </button>
+    </main>
+    <script src="script.js"></script>
+    <script src="script4.js"></script>
+</body>
+</html>

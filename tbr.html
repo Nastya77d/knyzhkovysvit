@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Плани на майбутнє</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>To Be Read List</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Зараз читаю</a></li>
+                <li><a href="library.html">Моя Бібліотека</a></li>
+                <li><a href="tbr.html"style="color: #d4af37;">Плани на майбутнє</a></li>
+                <li><a href="analytics.html">Читацький Календар</a></li>
+                <li><a href="publishers.html">Видавництва</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="tbr-wishlist">
+            <h2>⏳ Планую прочитати в найближчий час</h2>
+            <div class="bookshelf" id="tbr-container"></div>
+        </section>
+
+        <section id="tbr-unread">
+            <h2>📕 Планую придбати</h2>
+            <div class="bookshelf" id="unread-container"></div>
+        </section>
+
+        <section id="add-book-section">
+            <h3>Додати нову історію в плани</h3>
+            <div class="form-container">
+                <input type="text" id="book-title" placeholder="Назва книги...">
+                <input type="text" id="book-author" placeholder="Автор...">
+                
+                <select id="shelf-type">
+                    <option value="tbr">"Маю. Планую читати."</option>
+                    <option value="unread">"Планую придбати"</option>
+                </select>
+
+                <input type="text" id="book-url" placeholder="Вставте посилання на обкладинку (URL)..." oninput="previewImageFromUrl()">
+                
+                <div id="preview-container"></div>
+                <button type="button" onclick="addNewBookToTBR()">Додати в плани</button>
+            </div>
+        </section>
+          <section id="random-section">
+        <h2>🎲 Що почитати?</h2>
+        <div class="random-card">
+            <button id="dice-btn" onclick="getRandomBook()">Випробувати удачу</button>
+            <p id="result-display">Натисни кнопку...</p>
+        </div>
+    </section>
+
+    </main>
+
+    <script src="script3.js"></script>
+    <button id="scrollTopBtn" onclick="scrollToTop()" title="Повернутися наверх">↑</button>
+</body>
+</html>
