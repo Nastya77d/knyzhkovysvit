@@ -771,3 +771,16 @@ footer {
         background: rgba(212, 175, 55, 0.15);
     }
 }
+@media (max-width: 600px) {
+    .day-cell {
+        background-color: rgba(0,0,0,0) !important; /* Примусово прозорий */
+        border: none !important;
+        min-height: 70px !important;
+    }
+    .mini-cover {
+        width: 35px !important; 
+        height: 50px !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+}
