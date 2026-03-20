@@ -942,3 +942,14 @@ footer {
     box-sizing: border-box !important;
     margin-bottom: 15px !important;
 }
+/* Компактна таблиця */
+.publishers-table td {
+    padding: 8px 10px !important;
+    font-size: 0.85rem !important;
+    border-bottom: 1px solid #333 !important;
+}
+
+.publishers-table th {
+    padding: 10px !important;
+    font-size: 0.9rem !important;
+}
