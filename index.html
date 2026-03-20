@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookish World</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+
+    <header>
+    <h1>My Bookish World</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html"style="color: #d4af37;">Зараз читаю</a></li>
+            
+            <li><a href="library.html">Моя Бібліотека</a></li>
+            
+            <li><a href="tbr.html">План на майбутнє</a></li>
+            
+            <li><a href="tbr.html#random-section">Що почитати?</a></li>
+            
+            <li><a href="analytics.html">Читацький Календар</a></li>
+
+            <li><a href="quotes.html">Цитати</a></li>
+
+            <li><a href="publishers.html">Видавництва</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="now-reading">
+    <h2>📖 Зараз читаю...</h2>
+    
+    <div id="reading-list-container" style="display: flex; flex-direction: column; gap: 20px;"></div>
+
+    <div id="add-reading-form" style="margin-top: 30px; border: 1px dashed #444; padding: 15px; border-radius: 12px; width: fit-content;">
+        <h3 style="font-size: 1rem; color: #d4af37; margin-bottom: 10px;">Додати ще одну книгу</h3>
+        <div style="display: flex; gap: 10px;">
+            <button onclick="openAddReadingBookModal()">Додати книгу</button>
+        </div>
+    </div>
+</section>
+
+
+        <section id="favorites">
+    <h2>✨ Золота Колекція</h2>
+    
+    <div id="gold-shelf" class="book-grid"></div>
+
+    <div id="add-gold-section" style="margin-top: 40px; border: 1px dashed #d4af37; padding: 20px; border-radius: 12px;">
+        <h3 style="color: #d4af37; margin-top: 0;">Додати шедевр</h3>
+        <div class="form-container" style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <input type="text" id="gold-title" placeholder="Назва книги...">
+            <input type="text" id="gold-author" placeholder="Автор...">
+            <input type="text" id="gold-url" placeholder="Посилання на фото (URL)...">
+            
+            <select id="gold-rating" style="background: #2a2a2a; color: white; border: 1px solid #444; border-radius: 5px; padding: 10px;">
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select>
+            
+            <button type="button" onclick="addGoldBook()" style="padding: 10px 25px;">Додати</button>
+        </div>
+    </div>
+    <div class="backup-section" style="margin: 40px auto; text-align: center; padding: 20px; border-top: 1px solid #333;">
+    <h3 style="color: #d4af37; font-size: 1rem;">Керування даними (Повна копія)</h3>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <button onclick="exportData()" style="background: #2a2a2a; color: #d4af37; border: 1px solid #d4af37; padding: 10px 20px;">
+            💾 Зберегти все у файл
+        </button>
+        <button onclick="document.getElementById('importFile').click()" style="background: #2a2a2a; color: #d4af37; border: 1px solid #d4af37; padding: 10px 20px;">
+            📂 Завантажити все з файлу
+        </button>
+    </div>
+    <input type="file" id="importFile" style="display:none" onchange="importData(event)">
+</div>
+    <footer>
+        <p>© 2026 Створено з любов'ю до історій 🖤</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <button id="scrollTopBtn" onclick="scrollToTop()" title="Повернутися наверх">↑</button>
+</body>
+</html>
