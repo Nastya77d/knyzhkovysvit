@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мої Цитати - My Bookish World</title>
+    <link rel="stylesheet" href="style.css?v=3">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+    <header>
+    <h1>My Bookish World</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Зараз читаю</a></li>
+            <li><a href="library.html">Моя Бібліотека</a></li>
+            <li><a href="tbr.html">План на майбутнє</a></li>
+            <li><a href="tbr.html#random-section">Що почитати?</a></li>
+            <li><a href="analytics.html">Читацький Календар</a></li>
+            <li><a href="quotes.html" style="color: #d4af37;">Цитати</a></li>
+            <li><a href="publishers.html">Видавництва</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <main class="container">
+        <div id="quotes-gallery" class="books-grid">
+            </div>
+
+        <div id="quote-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeQuotes()">&times;</span>
+                <h2 id="modal-book-title">Назва книги</h2>
+                <div id="quotes-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Ініціалізація сторінки цитат
+        window.onload = function() {
+            renderQuotesGallery();
+        };
+    </script>
+</body>
+</html>
